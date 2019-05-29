@@ -1,6 +1,6 @@
 ﻿namespace subd_couse_work
 {
-    partial class Form1
+    partial class RegisterLoginMenu
     {
         /// <summary>
         /// Required designer variable.
@@ -28,13 +28,35 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.lblSuka = new System.Windows.Forms.Label();
+            this.SuspendLayout();
+            // 
+            // lblSuka
+            // 
+            this.lblSuka.AutoSize = true;
+            this.lblSuka.Location = new System.Drawing.Point(410, 149);
+            this.lblSuka.Name = "lblSuka";
+            this.lblSuka.Size = new System.Drawing.Size(35, 13);
+            this.lblSuka.TabIndex = 0;
+            this.lblSuka.Text = "label1";
+            // 
+            // RegisterLoginMenu
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Text = "Form1";
+            this.Controls.Add(this.lblSuka);
+            this.Name = "RegisterLoginMenu";
+            this.Text = "Discography Manager";
+            this.Load += new System.EventHandler(this.Form1_Load);
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
         }
 
         #endregion
+
+        private System.Windows.Forms.Label lblSuka;
     }
 }
 
