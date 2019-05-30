@@ -1,6 +1,6 @@
-DROP DATABASE IF EXISTS DiscographiesManagerDB;
-CREATE DATABASE DiscographiesManagerDB CHARSET 'utf8';
-USE DiscographiesManagerDB;
+DROP DATABASE IF EXISTS DiscographyManagerDB;
+CREATE DATABASE DiscographyManagerDB CHARSET 'utf8';
+USE DiscographyManagerDB;
 
 CREATE TABLE Users(
 	Id INTEGER NOT NULL AUTO_INCREMENT,
@@ -25,7 +25,7 @@ CREATE TABLE Discographies(
 	UserId INTEGER DEFAULT NULL,
 	Name VARCHAR(30) NOT NULL,
     
-	PRIMARY KEY(Id, UserId),
+	PRIMARY KEY(Id),
 	FOREIGN KEY (UserId) REFERENCES Users(Id)
 );
 
