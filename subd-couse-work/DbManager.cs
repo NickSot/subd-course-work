@@ -216,5 +216,15 @@ namespace subd_couse_work
             connection.Close();
         }
 
+        public static DataTable All(string tableName) {
+            MySqlDataAdapter da = new MySqlDataAdapter(string.Format("Select * From {0}", tableName), connection);
+
+            DataTable dt = new DataTable();
+
+            da.Fill(dt);
+
+            return dt;
+        }
+
     }
 }

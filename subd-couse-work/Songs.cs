@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using System.Reflection;
 
 namespace subd_couse_work
 {
@@ -38,6 +39,10 @@ namespace subd_couse_work
         public static void Delete(Dictionary<string, Object> dict)
         {
             DbManager.Delete("Songs", dict);
+        }
+
+        public static DataTable All() {
+            return DbManager.All("Songs");
         }
     }
 }

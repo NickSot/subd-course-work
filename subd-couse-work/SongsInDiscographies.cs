@@ -38,5 +38,10 @@ namespace subd_couse_work
         {
             DbManager.Delete("SongsInDiscographies", dict);
         }
+
+        public static DataTable All()
+        {
+            return DbManager.All("SongsInDiscographies");
+        }
     }
 }

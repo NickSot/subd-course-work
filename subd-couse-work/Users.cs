@@ -34,5 +34,9 @@ namespace subd_couse_work
         public static void Delete(Dictionary<string, Object> dict) {
             DbManager.Delete("Users", dict);
         }
+        public static DataTable All()
+        {
+            return DbManager.All("Users");
+        }
     }
 }

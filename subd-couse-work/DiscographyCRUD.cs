@@ -22,6 +22,8 @@ namespace subd_couse_work
         private void Form1_Load(object sender, EventArgs e)
         {
             DbManager m = new DbManager();
+
+            this.dgvDiscographies.DataSource = Discographies.All();
         }
 
         private void BtnCreateDisc_Click(object sender, EventArgs e)
