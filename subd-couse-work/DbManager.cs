@@ -52,7 +52,7 @@ namespace subd_couse_work
             return dt.Rows[0];
         }
 
-        public static DataTable Where(string tableName, Dictionary<string,string> dict) {
+        public static DataTable Where(string tableName, Dictionary<string, Object> dict) {
             connection.Open();
 
             StringBuilder sb = new StringBuilder();
@@ -90,7 +90,7 @@ namespace subd_couse_work
             return dt;
         }
 
-        public static void Insert(string tableName, Dictionary<string, string> dict) {
+        public static void Insert(string tableName, Dictionary<string, Object> dict) {
             connection.Open();
 
             StringBuilder sb = new StringBuilder();
@@ -140,7 +140,7 @@ namespace subd_couse_work
             connection.Close();
         }
 
-        public static void Update(string tableName, int id, Dictionary<string, string> dict) {
+        public static void Update(string tableName, int id, Dictionary<string, Object> dict) {
             connection.Open();
 
             StringBuilder sb = new StringBuilder();
@@ -177,7 +177,7 @@ namespace subd_couse_work
             connection.Close();
         }
 
-        public static void Delete(string tableName, Dictionary<string, string> dict) {
+        public static void Delete(string tableName, Dictionary<string, Object> dict) {
             connection.Open();
 
             StringBuilder sb = new StringBuilder();

@@ -19,19 +19,19 @@ namespace subd_couse_work
             return DbManager.Find("Users", id);
         }
 
-        public static DataTable Where(Dictionary<string, string> dict) {
+        public static DataTable Where(Dictionary<string, Object> dict) {
             return DbManager.Where("Users", dict);
         }
 
-        public static void Insert(Dictionary<string, string> dict) {
+        public static void Insert(Dictionary<string, Object> dict) {
             DbManager.Insert("Users", dict);
         }
 
-        public static void Update(int id, Dictionary<string, string> dict) {
+        public static void Update(int id, Dictionary<string, Object> dict) {
             DbManager.Update("Users", id, dict);
         }
 
-        public static void Delete(Dictionary<string, string> dict) {
+        public static void Delete(Dictionary<string, Object> dict) {
             DbManager.Delete("Users", dict);
         }
     }

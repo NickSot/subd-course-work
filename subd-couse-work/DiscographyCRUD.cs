@@ -26,7 +26,7 @@ namespace subd_couse_work
 
         private void BtnCreateDisc_Click(object sender, EventArgs e)
         {
-            Dictionary<string, string> input = new Dictionary<string, string>();
+            Dictionary<string, Object> input = new Dictionary<string, Object>();
 
             input.Add("Name", this.txtDiscographyName.Text);
 
