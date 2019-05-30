@@ -47,7 +47,9 @@ namespace subd_couse_work
 
         private void DgvDiscographies_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            //TODO
+            if (this.dgvDiscographies.Columns[e.ColumnIndex].Name == "Songs") {
+                new SongsCRUD(Convert.ToInt32(this.dgvDiscographies.Rows[e.RowIndex].Cells["Id"].Value)).ShowDialog();
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)

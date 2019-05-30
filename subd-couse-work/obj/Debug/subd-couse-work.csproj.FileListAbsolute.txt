@@ -46,3 +46,4 @@ F:\Projects\C#\subd-course-work\subd-couse-work\obj\Debug\subd-couse-work.csproj
 F:\Projects\C#\subd-course-work\subd-couse-work\obj\Debug\subd-couse-work.csproj.CopyComplete
 F:\Projects\C#\subd-course-work\subd-couse-work\obj\Debug\subd-couse-work.exe
 F:\Projects\C#\subd-course-work\subd-couse-work\obj\Debug\subd-couse-work.pdb
+F:\Projects\C#\subd-course-work\subd-couse-work\obj\Debug\subd_couse_work.SongsCRUD.resources
