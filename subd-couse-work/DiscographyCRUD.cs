@@ -37,13 +37,17 @@ namespace subd_couse_work
             input.Add("Name", this.txtDiscographyName.Text);
 
             Discographies.Insert(input);
+
+            this.dgvDiscographies.DataSource = Discographies.All();
+
+            this.dgvDiscographies.Columns["UserId"].Visible = false;
+
+            this.dgvDiscographies.Columns.Add("Songs", "Songs");
         }
 
         private void DgvDiscographies_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (this.dgvDiscographies.Columns[e.ColumnIndex].Name == "") {
-
-            }
+            //TODO
         }
     }
 }
