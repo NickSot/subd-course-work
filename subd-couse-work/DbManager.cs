@@ -177,20 +177,41 @@ namespace subd_couse_work
             connection.Close();
         }
 
-        public static void Delete(string tableName, int? id = null) {
+        public static void Delete(string tableName, Dictionary<string, string> dict) {
             connection.Open();
 
-            MySqlCommand sqlCmd = new MySqlCommand("", connection);
+            StringBuilder sb = new StringBuilder();
 
-            if (id == null)
+            sb.Append(string.Format("Delete From {0} Where ", tableName));
+
+            int counter = 0;
+
+            foreach (var obj in dict)
             {
-                sqlCmd.CommandText = string.Format("Delete From {0};", tableName);
-            }
-            else {
-                sqlCmd.CommandText = string.Format("Delete From {0} Where Id = {1}", tableName, id);
+                sb.Append(obj.Key + "=" + string.Concat("@" + obj.Key));
+
+                if (counter < dict.Count - 1)
+                {
+                    sb.Append(" And ");
+                }
+
+                counter++;
             }
 
-            sqlCmd.ExecuteNonQuery();
+            sb.Append(";");
+
+            MySqlCommand sqlCmd = new MySqlCommand(sb.ToString(), connection);
+
+            foreach (var obj in dict)
+            {
+                sqlCmd.Parameters.AddWithValue(string.Concat("@", obj.Key), obj.Value.ToString());
+            }
+
+            MySqlDataAdapter da = new MySqlDataAdapter(sqlCmd);
+
+            DataTable dt = new DataTable();
+
+            da.Fill(dt);
 
             connection.Close();
         }
