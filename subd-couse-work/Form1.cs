@@ -19,31 +19,16 @@ namespace subd_couse_work
             InitializeComponent();
         }
 
-        MySqlConnection con;
-
         private void Form1_Load(object sender, EventArgs e)
         {
+            DbManager m = new DbManager();
 
-            //Тука си пишем нашите credential-и
-            //Ще ги сложим в отделен файл, който ще е в .gitignore
+            Dictionary<string, string> filter = new Dictionary<string, string>();
 
-            string mySqlConnectionString = "datasource=127.0.0.1;port=3306;username=root;password=099824058;database=library;";
+            filter.Add("Name", "Sondern");
 
-            con = new MySqlConnection(mySqlConnectionString);
-
-            MySqlDataAdapter da = new MySqlDataAdapter("Select * From authors", con);
-
-            con.Open();
-
-            DataTable dt = new DataTable();
-
-            da.Fill(dt);
-
-            con.Close();
-
-            foreach (DataRow row in dt.Rows) {
-                this.lblSuka.Text += row["Name"].ToString() + "\n";
-            }
+            DbManager.Users.Insert(filter);
+            //this.lblSuka.Text = DbManager.Users.Find(1)["Name"].ToString();
         }
     }
 }
