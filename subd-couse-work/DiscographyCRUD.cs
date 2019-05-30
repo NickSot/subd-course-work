@@ -27,7 +27,15 @@ namespace subd_couse_work
 
             this.dgvDiscographies.Columns["UserId"].Visible = false;
 
-            this.dgvDiscographies.Columns.Add("Songs", "Songs");
+            if (this.dgvDiscographies.Columns["Songs"] == null)
+            {
+                this.dgvDiscographies.Columns.Add("Songs", "Songs");
+
+                foreach (DataGridViewRow row in this.dgvDiscographies.Rows)
+                {
+                    row.Cells["Songs"].Value = "Click here!";
+                }
+            }
         }
 
         private void BtnCreateDisc_Click(object sender, EventArgs e)
@@ -42,13 +50,21 @@ namespace subd_couse_work
 
             this.dgvDiscographies.Columns["UserId"].Visible = false;
 
-            this.dgvDiscographies.Columns.Add("Songs", "Songs");
+            if (this.dgvDiscographies.Columns["Songs"] == null)
+            {
+                this.dgvDiscographies.Columns.Add("Songs", "Songs");
+
+                foreach (DataGridViewRow row in this.dgvDiscographies.Rows) {
+                    row.Cells["Songs"].Value= "Click here!";
+                }
+            }
         }
 
         private void DgvDiscographies_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (this.dgvDiscographies.Columns[e.ColumnIndex].Name == "Songs") {
-                new SongsCRUD(Convert.ToInt32(this.dgvDiscographies.Rows[e.RowIndex].Cells["Id"].Value)).ShowDialog();
+            if (this.dgvDiscographies.Columns[e.ColumnIndex].Name == "Songs" && e.RowIndex >= 0 && e.RowIndex < this.dgvDiscographies.Rows.Count - 1) {
+                this.Hide();
+                new SongsCRUD(Convert.ToInt32(this.dgvDiscographies.Rows[e.RowIndex].Cells["Id"].Value), this).ShowDialog();
             }
         }
 
@@ -65,11 +81,6 @@ namespace subd_couse_work
             this.dgvDiscographies.DataSource = Discographies.All();
 
             this.dgvDiscographies.Columns["UserId"].Visible = false;
-
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
 
         }
     }

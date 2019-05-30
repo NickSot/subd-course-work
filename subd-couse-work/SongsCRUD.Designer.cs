@@ -113,6 +113,7 @@
             this.Controls.Add(this.gbCreateSong);
             this.Name = "SongsCRUD";
             this.Text = "SongsCRUD";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.SongsCRUD_FormClosed);
             this.Load += new System.EventHandler(this.SongsCRUD_Load);
             this.gbCreateSong.ResumeLayout(false);
             this.gbCreateSong.PerformLayout();

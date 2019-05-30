@@ -117,7 +117,6 @@
             this.discographyId.Name = "discographyId";
             this.discographyId.Size = new System.Drawing.Size(257, 20);
             this.discographyId.TabIndex = 1;
-            this.discographyId.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // label2
             // 

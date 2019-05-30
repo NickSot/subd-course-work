@@ -15,7 +15,8 @@ namespace subd_couse_work
 {
     public partial class SongsCRUD : Form
     {
-        int parent_id;
+        private int parent_id;
+        private Form caller;
 
         private void JoinAndShow() {
             var joinedTable = from s in Songs.All().AsEnumerable()
@@ -25,7 +26,7 @@ namespace subd_couse_work
                           select new
                           {
                               SongName = (string)s["Name"],
-                              Lyrics = (string)s["Text"]
+                              Lyrics = (string)s["Lyrics"]
                           };
 
             DataTable dt = new DataTable();
@@ -47,11 +48,13 @@ namespace subd_couse_work
             this.dgvSong.DataSource = dt;
         }
 
-        public SongsCRUD(int parent_id)
+        public SongsCRUD(int parent_id, Form caller)
         {
             InitializeComponent();
 
             this.parent_id = parent_id;
+
+            this.caller = caller;
         }
 
         private void SongsCRUD_Load(object sender, EventArgs e)
@@ -67,7 +70,7 @@ namespace subd_couse_work
 
             dict.Add("Name", this.txtSongName.Text);
 
-            dict.Add("Text", this.rtbLyrics.Text);
+            dict.Add("Lyrics", this.rtbLyrics.Text);
 
             DateTime now = DateTime.Now;
 
@@ -86,6 +89,12 @@ namespace subd_couse_work
             SongsInDiscographies.Insert(dict);
 
             JoinAndShow();
+        }
+
+        private void SongsCRUD_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            this.Close();
+            this.caller.Show();
         }
     }
 }
