@@ -195,13 +195,37 @@ namespace subd_couse_work
                 connection.Close();
             }
 
-            public static void Update(int id, params string [] query) {
+            public static void Update(int id, Dictionary<string, string> dict) {
                 connection.Open();
 
-                MySqlCommand sqlCmd = new MySqlCommand("Update Users Name = @name Where Id = @id", connection);
+                StringBuilder sb = new StringBuilder();
+
+                sb.Append("Update Users Set ");
+
+                int counter = 0;
+
+                foreach (var obj in dict)
+                {
+                    sb.Append(obj.Key + "=" + string.Concat("@" + obj.Key));
+
+                    if (counter < dict.Count - 1)
+                    {
+                        sb.Append(", ");
+                    }
+
+                    counter++;
+                }
+
+                sb.Append(" Where Id = @id;");
+
+                MySqlCommand sqlCmd = new MySqlCommand(sb.ToString(), connection);
 
                 sqlCmd.Parameters.AddWithValue("@id", id);
-                sqlCmd.Parameters.AddWithValue("@name", query[0]);
+
+                foreach (var obj in dict)
+                {
+                    sqlCmd.Parameters.AddWithValue(string.Concat("@", obj.Key), obj.Value.ToString());
+                }
 
                 sqlCmd.ExecuteNonQuery();
 

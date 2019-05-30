@@ -25,9 +25,9 @@ namespace subd_couse_work
 
             Dictionary<string, string> filter = new Dictionary<string, string>();
 
-            filter.Add("Name", "Sondern");
+            filter.Add("Name", "Sunnova");
 
-            DbManager.Users.Insert(filter);
+            DbManager.Users.Update(1, filter);
             //this.lblSuka.Text = DbManager.Users.Find(1)["Name"].ToString();
         }
     }
