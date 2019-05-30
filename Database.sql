@@ -1,4 +1,4 @@
-DROP DATABASE IF EXISTS Records;
+DROP DATABASE IF EXISTS DiscographiesManagerDB;
 CREATE DATABASE DiscographiesManagerDB CHARSET 'utf8';
 USE DiscographiesManagerDB;
 
@@ -9,6 +9,7 @@ CREATE TABLE Users(
     Password VARCHAR(200) NOT NULL,
     PRIMARY KEY(Id)
 );
+
 
 CREATE TABLE Songs(
 	Id INTEGER NOT NULL AUTO_INCREMENT,
@@ -29,11 +30,14 @@ CREATE TABLE Discographies(
 );
 
 CREATE TABLE SongsInDiscographies(
-	DiscographyId INTEGER NOT NULL,
-    SongId INTEGER NOT NULL,
-    
-    PRIMARY KEY(DiscographyId, SongId),
+	DiscographyId INTEGER DEFAULT NULL,
+    SongId INTEGER DEFAULT NULL,
     
     FOREIGN KEY (DiscographyId) REFERENCES Discographies(Id),
     FOREIGN KEY (SongId) REFERENCES Songs(Id)
 );
+
+CREATE UNIQUE INDEX nameOfUser
+ON Users (Name);
+CREATE UNIQUE INDEX emailOfUser
+ON Users (Email);
