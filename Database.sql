@@ -1,6 +1,6 @@
 DROP DATABASE IF EXISTS Records;
-CREATE DATABASE Records CHARSET 'utf8';
-USE Records;
+CREATE DATABASE DiscographiesManagerDB CHARSET 'utf8';
+USE DiscographiesManagerDB;
 
 CREATE TABLE Users(
 	Id INTEGER NOT NULL AUTO_INCREMENT,

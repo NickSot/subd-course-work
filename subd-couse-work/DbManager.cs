@@ -34,203 +34,165 @@ namespace subd_couse_work
             connection.Close();
         }
 
-        public static class Songs{
-            public static DataRow Find(int id)
-            {
-                connection.Open();
+        public static DataRow Find(string tableName, int id) {
+            connection.Open();
 
-                MySqlCommand sqlCmd = new MySqlCommand("Select * From Songs Where Id = @id", connection);
+            MySqlCommand sqlCmd = new MySqlCommand("Select * From " + tableName + " Where Id = @id", connection);
 
-                sqlCmd.Parameters.AddWithValue("@id", id);
+            sqlCmd.Parameters.AddWithValue("@id", id);
 
-                MySqlDataAdapter da = new MySqlDataAdapter(sqlCmd);
+            MySqlDataAdapter da = new MySqlDataAdapter(sqlCmd);
 
-                DataTable dt = new DataTable();
+            DataTable dt = new DataTable();
 
-                da.Fill(dt);
+            da.Fill(dt);
 
-                connection.Close();
+            connection.Close();
 
-                return dt.Rows[0];
-            }
-
-            public static void Insert(params string[] query)
-            {
-                connection.Open();
-
-                MySqlCommand sqlCmd = new MySqlCommand("Insert Into Users (Name) Values (@name)", connection);
-
-                var list = new List<string>();
-
-                sqlCmd.Parameters.AddWithValue("@name", query[0]);
-
-                sqlCmd.ExecuteNonQuery();
-
-                connection.Close();
-            }
-
-            public static void Update(int id, params string[] query)
-            {
-                connection.Open();
-
-                MySqlCommand sqlCmd = new MySqlCommand("Update Users Name = @name Where Id = @id", connection);
-
-                sqlCmd.Parameters.AddWithValue("@id", id);
-                sqlCmd.Parameters.AddWithValue("@name", query[0]);
-
-                sqlCmd.ExecuteNonQuery();
-
-                connection.Close();
-            }
+            return dt.Rows[0];
         }
 
-        public static class Discographies {
+        public static DataTable Where(string tableName, Dictionary<string,string> dict) {
+            connection.Open();
 
+            StringBuilder sb = new StringBuilder();
+
+            sb.Append(string.Format("Select * From {0} Where ", tableName));
+
+            int counter = 0;
+
+            foreach (var obj in dict) {
+                sb.Append(obj.Key + "=" + string.Concat("@" + obj.Key));
+
+                if (counter < dict.Count - 1) {
+                    sb.Append(" And ");
+                }
+
+                counter++;
+            }
+
+            sb.Append(";");
+
+            MySqlCommand sqlCmd = new MySqlCommand(sb.ToString(), connection);
+
+            foreach (var obj in dict) {
+                sqlCmd.Parameters.AddWithValue(string.Concat("@", obj.Key), obj.Value.ToString());
+            }
+
+            MySqlDataAdapter da = new MySqlDataAdapter(sqlCmd);
+
+            DataTable dt = new DataTable();
+
+            da.Fill(dt);
+
+            connection.Close();
+
+            return dt;
         }
 
-        public static class Users {
-            public static DataRow Find(int id) {
-                connection.Open();
+        public static void Insert(string tableName, Dictionary<string, string> dict) {
+            connection.Open();
 
-                MySqlCommand sqlCmd = new MySqlCommand("Select * From Users Where Id = @id", connection);
+            StringBuilder sb = new StringBuilder();
 
-                sqlCmd.Parameters.AddWithValue("@id", id);
+            sb.Append(string.Format("Insert Into {0} (", tableName));
 
-                MySqlDataAdapter da = new MySqlDataAdapter(sqlCmd);
+            int counter = 0;
 
-                DataTable dt = new DataTable();
+            foreach (var obj in dict)
+            {
+                sb.Append(obj.Key);
 
-                da.Fill(dt);
+                if (counter < dict.Count - 1){
+                    sb.Append(", ");
+                }
 
-                connection.Close();
-
-                return dt.Rows[0];
+                counter++;
             }
 
-            public static DataTable Where(Dictionary<string,string> dict) {
-                connection.Open();
+            sb.Append(") Values ( ");
 
-                StringBuilder sb = new StringBuilder();
+            counter = 0;
 
-                sb.Append("Select * From Users Where ");
+            foreach (var obj in dict)
+            {
+                sb.Append("@" + obj.Key);
 
-                int counter = 0;
-
-                foreach (var obj in dict) {
-                    sb.Append(obj.Key + "=" + string.Concat("@" + obj.Key));
-
-                    if (counter < dict.Count - 1) {
-                        sb.Append(" And ");
-                    }
-
-                    counter++;
+                if (counter < dict.Count - 1)
+                {
+                    sb.Append(", ");
                 }
 
-                sb.Append(";");
-
-                MySqlCommand sqlCmd = new MySqlCommand(sb.ToString(), connection);
-
-                foreach (var obj in dict) {
-                    sqlCmd.Parameters.AddWithValue(string.Concat("@", obj.Key), obj.Value.ToString());
-                }
-
-                MySqlDataAdapter da = new MySqlDataAdapter(sqlCmd);
-
-                DataTable dt = new DataTable();
-
-                da.Fill(dt);
-
-                connection.Close();
-
-                return dt;
+                counter++;
             }
 
-            public static void Insert(Dictionary<string, string> dict) {
-                connection.Open();
+            sb.Append(");");
 
-                StringBuilder sb = new StringBuilder();
+            MySqlCommand sqlCmd = new MySqlCommand(sb.ToString(), connection);
 
-                sb.Append("Insert Into Users (");
-
-                int counter = 0;
-
-                foreach (var obj in dict)
-                {
-                    sb.Append(obj.Key);
-
-                    if (counter < dict.Count - 1){
-                        sb.Append(", ");
-                    }
-
-                    counter++;
-                }
-
-                sb.Append(") Values ( ");
-
-                counter = 0;
-
-                foreach (var obj in dict)
-                {
-                    sb.Append("@" + obj.Key);
-
-                    if (counter < dict.Count - 1)
-                    {
-                        sb.Append(", ");
-                    }
-
-                    counter++;
-                }
-
-                sb.Append(");");
-
-                MySqlCommand sqlCmd = new MySqlCommand(sb.ToString(), connection);
-
-                foreach (var obj in dict)
-                {
-                    sqlCmd.Parameters.AddWithValue(string.Concat("@", obj.Key), obj.Value.ToString());
-                }
-
-                sqlCmd.ExecuteNonQuery();
-
-                connection.Close();
+            foreach (var obj in dict)
+            {
+                sqlCmd.Parameters.AddWithValue(string.Concat("@", obj.Key), obj.Value.ToString());
             }
 
-            public static void Update(int id, Dictionary<string, string> dict) {
-                connection.Open();
+            sqlCmd.ExecuteNonQuery();
 
-                StringBuilder sb = new StringBuilder();
+            connection.Close();
+        }
 
-                sb.Append("Update Users Set ");
+        public static void Update(string tableName, int id, Dictionary<string, string> dict) {
+            connection.Open();
 
-                int counter = 0;
+            StringBuilder sb = new StringBuilder();
 
-                foreach (var obj in dict)
+            sb.Append(string.Format("Update {0} Set ", tableName));
+
+            int counter = 0;
+
+            foreach (var obj in dict)
+            {
+                sb.Append(obj.Key + "=" + string.Concat("@" + obj.Key));
+
+                if (counter < dict.Count - 1)
                 {
-                    sb.Append(obj.Key + "=" + string.Concat("@" + obj.Key));
-
-                    if (counter < dict.Count - 1)
-                    {
-                        sb.Append(", ");
-                    }
-
-                    counter++;
+                    sb.Append(", ");
                 }
 
-                sb.Append(" Where Id = @id;");
-
-                MySqlCommand sqlCmd = new MySqlCommand(sb.ToString(), connection);
-
-                sqlCmd.Parameters.AddWithValue("@id", id);
-
-                foreach (var obj in dict)
-                {
-                    sqlCmd.Parameters.AddWithValue(string.Concat("@", obj.Key), obj.Value.ToString());
-                }
-
-                sqlCmd.ExecuteNonQuery();
-
-                connection.Close();
+                counter++;
             }
+
+            sb.Append(" Where Id = @id;");
+
+            MySqlCommand sqlCmd = new MySqlCommand(sb.ToString(), connection);
+
+            sqlCmd.Parameters.AddWithValue("@id", id);
+
+            foreach (var obj in dict)
+            {
+                sqlCmd.Parameters.AddWithValue(string.Concat("@", obj.Key), obj.Value.ToString());
+            }
+
+            sqlCmd.ExecuteNonQuery();
+
+            connection.Close();
+        }
+
+        public static void Delete(string tableName, int? id = null) {
+            connection.Open();
+
+            MySqlCommand sqlCmd = new MySqlCommand("", connection);
+
+            if (id == null)
+            {
+                sqlCmd.CommandText = string.Format("Delete From {0};", tableName);
+            }
+            else {
+                sqlCmd.CommandText = string.Format("Delete From {0} Where Id = {1}", tableName, id);
+            }
+
+            sqlCmd.ExecuteNonQuery();
+
+            connection.Close();
         }
 
     }
