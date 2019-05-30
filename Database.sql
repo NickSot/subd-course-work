@@ -1,0 +1,36 @@
+DROP DATABASE IF EXISTS Records;
+CREATE DATABASE Records CHARSET 'utf8';
+USE Records;
+
+CREATE TABLE Users(
+	Id INTEGER NOT NULL AUTO_INCREMENT,
+	Name VARCHAR(30) NOT NULL,
+    PRIMARY KEY(Id)
+);
+
+CREATE TABLE Songs(
+	Id INTEGER NOT NULL AUTO_INCREMENT,
+    Name VARCHAR(30) NOT NULL,
+	Text VARCHAR(500) NOT NULL,
+    ReleaseDate DATE NOT NULL,
+	PRIMARY KEY(Id)
+);
+
+
+CREATE TABLE Discographies(
+	Id INTEGER NOT NULL AUTO_INCREMENT,
+	UserId INTEGER NOT NULL,
+
+	PRIMARY KEY(Id, UserId),
+	FOREIGN KEY (UserId) REFERENCES Users(Id)
+);
+
+CREATE TABLE SongsInDiscographies(
+	DiscographyId INTEGER NOT NULL,
+    SongId INTEGER NOT NULL,
+    
+    PRIMARY KEY(DiscographyId, SongId),
+    
+    FOREIGN KEY (DiscographyId) REFERENCES Discographies(Id),
+    FOREIGN KEY (SongId) REFERENCES Songs(Id)
+);
