@@ -24,6 +24,10 @@ namespace subd_couse_work
             DbManager m = new DbManager();
 
             this.dgvDiscographies.DataSource = Discographies.All();
+
+            this.dgvDiscographies.Columns["UserId"].Visible = false;
+
+            this.dgvDiscographies.Columns.Add("Songs", "Songs");
         }
 
         private void BtnCreateDisc_Click(object sender, EventArgs e)
@@ -33,6 +37,13 @@ namespace subd_couse_work
             input.Add("Name", this.txtDiscographyName.Text);
 
             Discographies.Insert(input);
+        }
+
+        private void DgvDiscographies_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (this.dgvDiscographies.Columns[e.ColumnIndex].Name == "") {
+
+            }
         }
     }
 }

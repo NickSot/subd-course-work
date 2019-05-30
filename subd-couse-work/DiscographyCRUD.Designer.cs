@@ -82,6 +82,7 @@
             this.dgvDiscographies.Name = "dgvDiscographies";
             this.dgvDiscographies.Size = new System.Drawing.Size(617, 571);
             this.dgvDiscographies.TabIndex = 1;
+            this.dgvDiscographies.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvDiscographies_CellClick);
             // 
             // RegisterLoginMenu
             // 
