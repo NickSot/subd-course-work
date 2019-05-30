@@ -31,8 +31,8 @@ namespace subd_couse_work
             DbManager.Update("Users", id, dict);
         }
 
-        public static void Delete(int? id = null) {
-            DbManager.Delete("Users", id);
+        public static void Delete(Dictionary<string, string> dict) {
+            DbManager.Delete("Users", dict);
         }
     }
 }
