@@ -35,9 +35,9 @@ namespace subd_couse_work
             DbManager.Update("Discographies", id, dict);
         }
 
-        public static void Delete(int? id = null)
+        public static void Delete(Dictionary<string, string> dict)
         {
-            DbManager.Delete("Discographies", id);
+            DbManager.Delete("Discographies", dict);
         }
     }
 }

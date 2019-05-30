@@ -23,5 +23,14 @@ namespace subd_couse_work
         {
             DbManager m = new DbManager();
         }
+
+        private void BtnCreateDisc_Click(object sender, EventArgs e)
+        {
+            Dictionary<string, string> input = new Dictionary<string, string>();
+
+            input.Add("Name", this.txtDiscographyName.Text);
+
+            Discographies.Insert(input);
+        }
     }
 }
