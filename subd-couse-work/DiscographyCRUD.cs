@@ -49,5 +49,26 @@ namespace subd_couse_work
         {
             //TODO
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Dictionary<string, Object> input = new Dictionary<string, Object>();
+
+            int id = Int32.Parse(this.discographyId.Text);
+
+            input.Add("Id", id);
+
+            Discographies.Delete(input);
+
+            this.dgvDiscographies.DataSource = Discographies.All();
+
+            this.dgvDiscographies.Columns["UserId"].Visible = false;
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
