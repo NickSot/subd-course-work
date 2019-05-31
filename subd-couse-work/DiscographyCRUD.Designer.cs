@@ -47,18 +47,21 @@
             this.groupBox1.Controls.Add(this.btnCreateDisc);
             this.groupBox1.Controls.Add(this.txtDiscographyName);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Location = new System.Drawing.Point(23, 24);
+            this.groupBox1.Location = new System.Drawing.Point(31, 30);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(386, 136);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Size = new System.Drawing.Size(515, 167);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Create Discography";
             // 
             // btnCreateDisc
             // 
-            this.btnCreateDisc.Location = new System.Drawing.Point(195, 75);
+            this.btnCreateDisc.Location = new System.Drawing.Point(260, 92);
+            this.btnCreateDisc.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnCreateDisc.Name = "btnCreateDisc";
-            this.btnCreateDisc.Size = new System.Drawing.Size(126, 40);
+            this.btnCreateDisc.Size = new System.Drawing.Size(168, 49);
             this.btnCreateDisc.TabIndex = 2;
             this.btnCreateDisc.Text = "Create Discography";
             this.btnCreateDisc.UseVisualStyleBackColor = true;
@@ -66,26 +69,29 @@
             // 
             // txtDiscographyName
             // 
-            this.txtDiscographyName.Location = new System.Drawing.Point(64, 31);
+            this.txtDiscographyName.Location = new System.Drawing.Point(85, 38);
+            this.txtDiscographyName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtDiscographyName.Name = "txtDiscographyName";
-            this.txtDiscographyName.Size = new System.Drawing.Size(257, 20);
+            this.txtDiscographyName.Size = new System.Drawing.Size(341, 22);
             this.txtDiscographyName.TabIndex = 1;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(17, 31);
+            this.label1.Location = new System.Drawing.Point(23, 38);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(41, 13);
+            this.label1.Size = new System.Drawing.Size(53, 17);
             this.label1.TabIndex = 0;
             this.label1.Text = "Name: ";
             // 
             // dgvDiscographies
             // 
             this.dgvDiscographies.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvDiscographies.Location = new System.Drawing.Point(592, 24);
+            this.dgvDiscographies.Location = new System.Drawing.Point(789, 30);
+            this.dgvDiscographies.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dgvDiscographies.Name = "dgvDiscographies";
-            this.dgvDiscographies.Size = new System.Drawing.Size(617, 571);
+            this.dgvDiscographies.Size = new System.Drawing.Size(823, 703);
             this.dgvDiscographies.TabIndex = 1;
             this.dgvDiscographies.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvDiscographies_CellClick);
             // 
@@ -94,18 +100,21 @@
             this.groupBox2.Controls.Add(this.button1);
             this.groupBox2.Controls.Add(this.discographyId);
             this.groupBox2.Controls.Add(this.label2);
-            this.groupBox2.Location = new System.Drawing.Point(23, 182);
+            this.groupBox2.Location = new System.Drawing.Point(31, 224);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(386, 136);
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox2.Size = new System.Drawing.Size(515, 167);
             this.groupBox2.TabIndex = 2;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Delete Discography";
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(195, 75);
+            this.button1.Location = new System.Drawing.Point(260, 92);
+            this.button1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(126, 40);
+            this.button1.Size = new System.Drawing.Size(168, 49);
             this.button1.TabIndex = 2;
             this.button1.Text = "Delete Discography";
             this.button1.UseVisualStyleBackColor = true;
@@ -113,28 +122,31 @@
             // 
             // discographyId
             // 
-            this.discographyId.Location = new System.Drawing.Point(64, 31);
+            this.discographyId.Location = new System.Drawing.Point(85, 38);
+            this.discographyId.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.discographyId.Name = "discographyId";
-            this.discographyId.Size = new System.Drawing.Size(257, 20);
+            this.discographyId.Size = new System.Drawing.Size(341, 22);
             this.discographyId.TabIndex = 1;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(17, 31);
+            this.label2.Location = new System.Drawing.Point(23, 38);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(22, 13);
+            this.label2.Size = new System.Drawing.Size(27, 17);
             this.label2.TabIndex = 0;
             this.label2.Text = "Id: ";
             // 
             // RegisterLoginMenu
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1251, 630);
+            this.ClientSize = new System.Drawing.Size(1668, 775);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.dgvDiscographies);
             this.Controls.Add(this.groupBox1);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "RegisterLoginMenu";
             this.Text = "Discography Manager";
             this.Load += new System.EventHandler(this.Form1_Load);

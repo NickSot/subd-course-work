@@ -16,7 +16,7 @@ namespace subd_couse_work
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new RegisterLoginMenu());
+            Application.Run(new AuthenticateForm());
         }
     }
 }

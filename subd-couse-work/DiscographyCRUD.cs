@@ -83,5 +83,6 @@ namespace subd_couse_work
             this.dgvDiscographies.Columns["UserId"].Visible = false;
 
         }
+
     }
 }

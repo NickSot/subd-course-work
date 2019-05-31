@@ -47,3 +47,21 @@ F:\Projects\C#\subd-course-work\subd-couse-work\obj\Debug\subd-couse-work.csproj
 F:\Projects\C#\subd-course-work\subd-couse-work\obj\Debug\subd-couse-work.exe
 F:\Projects\C#\subd-course-work\subd-couse-work\obj\Debug\subd-couse-work.pdb
 F:\Projects\C#\subd-course-work\subd-couse-work\obj\Debug\subd_couse_work.SongsCRUD.resources
+D:\Disk D\~~Programming~~\Projects\.Net\subd-course-work\subd-couse-work\bin\Debug\subd-couse-work.exe.config
+D:\Disk D\~~Programming~~\Projects\.Net\subd-course-work\subd-couse-work\bin\Debug\subd-couse-work.exe
+D:\Disk D\~~Programming~~\Projects\.Net\subd-course-work\subd-couse-work\bin\Debug\subd-couse-work.pdb
+D:\Disk D\~~Programming~~\Projects\.Net\subd-course-work\subd-couse-work\bin\Debug\BouncyCastle.Crypto.dll
+D:\Disk D\~~Programming~~\Projects\.Net\subd-course-work\subd-couse-work\bin\Debug\Google.Protobuf.dll
+D:\Disk D\~~Programming~~\Projects\.Net\subd-course-work\subd-couse-work\bin\Debug\MySql.Data.dll
+D:\Disk D\~~Programming~~\Projects\.Net\subd-course-work\subd-couse-work\bin\Debug\Google.Protobuf.xml
+D:\Disk D\~~Programming~~\Projects\.Net\subd-course-work\subd-couse-work\bin\Debug\MySql.Data.xml
+D:\Disk D\~~Programming~~\Projects\.Net\subd-course-work\subd-couse-work\obj\Debug\subd-couse-work.csprojAssemblyReference.cache
+D:\Disk D\~~Programming~~\Projects\.Net\subd-course-work\subd-couse-work\obj\Debug\subd_couse_work.RegisterLoginMenu.resources
+D:\Disk D\~~Programming~~\Projects\.Net\subd-course-work\subd-couse-work\obj\Debug\subd_couse_work.Properties.Resources.resources
+D:\Disk D\~~Programming~~\Projects\.Net\subd-course-work\subd-couse-work\obj\Debug\subd_couse_work.SongsCRUD.resources
+D:\Disk D\~~Programming~~\Projects\.Net\subd-course-work\subd-couse-work\obj\Debug\subd-couse-work.csproj.GenerateResource.cache
+D:\Disk D\~~Programming~~\Projects\.Net\subd-course-work\subd-couse-work\obj\Debug\subd-couse-work.csproj.CoreCompileInputs.cache
+D:\Disk D\~~Programming~~\Projects\.Net\subd-course-work\subd-couse-work\obj\Debug\subd-couse-work.csproj.CopyComplete
+D:\Disk D\~~Programming~~\Projects\.Net\subd-course-work\subd-couse-work\obj\Debug\subd-couse-work.exe
+D:\Disk D\~~Programming~~\Projects\.Net\subd-course-work\subd-couse-work\obj\Debug\subd-couse-work.pdb
+D:\Disk D\~~Programming~~\Projects\.Net\subd-course-work\subd-couse-work\obj\Debug\subd_couse_work.AuthenticateForm.resources
