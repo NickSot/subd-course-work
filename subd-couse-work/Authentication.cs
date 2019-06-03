@@ -21,7 +21,6 @@ namespace subd_couse_work
         {
             DbManager dbManager = new DbManager();
             pageRegister.Hide();
-
         }
 
         private void btnLogin_Click(object sender, EventArgs e)
@@ -31,7 +30,6 @@ namespace subd_couse_work
                 this.Hide();
                 new RegisterLoginMenu().ShowDialog();
                 this.Close();
-
             }
             else
             {
