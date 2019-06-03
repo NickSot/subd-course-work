@@ -81,6 +81,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Encryptor.cs" />
     <Compile Include="DbManager.cs" />
     <Compile Include="Discographies.cs" />
     <Compile Include="DiscographyCRUD.cs">
