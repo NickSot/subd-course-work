@@ -21,7 +21,6 @@ namespace subd_couse_work
         {
             DbManager dbManager = new DbManager();
             pageRegister.Hide();
-
         }
 
 
@@ -42,6 +41,7 @@ namespace subd_couse_work
         {
             if (pageLogin.Visible)
             {
+
                 Dictionary<string, Object> user = new Dictionary<string, Object>();
                 user.Add("Name", txtUsernameLogin.Text);
                 DataTable foundUser = Users.Where(user);
@@ -61,7 +61,6 @@ namespace subd_couse_work
                         MessageBox.Show("Wrong username or password!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
-                MessageBox.Show(Users.Where(user).Rows.Count.ToString());
             }
             else
             {
@@ -83,11 +82,10 @@ namespace subd_couse_work
                     Dictionary<string, Object> newUserDict = new Dictionary<string, Object>();
                     newUserDict.Add("Name", txtUsernameReg.Text);
 
-                    //DataTable userWithUsername = Users.Where(newUserDict);
                     newUserDict.Add("Email", txtEmailReg.Text);
                     string encryptedPassword = Encryptor.computeHash(txtPassReg.Text, Base64Encode(txtUsernameReg.Text), 1000, 128);
                     newUserDict.Add("Password", encryptedPassword);
-                    if (Users.Where(newUserDict).Rows.Count == 0) // This is bad because it doesn't handle non unique single values
+                    if (Users.WhereOr(newUserDict).Rows.Count == 0) // This is bad because it doesn't handle non unique single values
                     {
                         Users.Insert(newUserDict);
                         proceedAfterAuthentication();

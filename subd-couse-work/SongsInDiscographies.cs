@@ -21,7 +21,12 @@ namespace subd_couse_work
 
         public static DataTable Where(Dictionary<string, Object> dict)
         {
-            return DbManager.Where("SongsInDiscographies", dict);
+            return DbManager.WhereAnd("SongsInDiscographies", dict);
+        }
+
+        public static DataTable WhereOr(Dictionary<string, Object> dict)
+        {
+            return DbManager.WhereOr("SongsInDiscographies", dict);
         }
 
         public static void Insert(Dictionary<string, Object> dict)

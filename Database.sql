@@ -10,15 +10,13 @@ CREATE TABLE Users(
     PRIMARY KEY(Id)
 );
 
-
 CREATE TABLE Songs(
 	Id INTEGER NOT NULL AUTO_INCREMENT,
     Name VARCHAR(30) NOT NULL,
-	Text VARCHAR(500) NOT NULL,
+	Lyrics VARCHAR(500) NOT NULL,
     ReleaseDate DATE NOT NULL,
 	PRIMARY KEY(Id)
 );
-
 
 CREATE TABLE Discographies(
 	Id INTEGER NOT NULL AUTO_INCREMENT,
@@ -26,15 +24,15 @@ CREATE TABLE Discographies(
 	Name VARCHAR(30) NOT NULL,
     
 	PRIMARY KEY(Id),
-	FOREIGN KEY (UserId) REFERENCES Users(Id)
+	FOREIGN KEY (UserId) REFERENCES Users(Id) On Delete Cascade
 );
 
 CREATE TABLE SongsInDiscographies(
 	DiscographyId INTEGER DEFAULT NULL,
     SongId INTEGER DEFAULT NULL,
     
-    FOREIGN KEY (DiscographyId) REFERENCES Discographies(Id),
-    FOREIGN KEY (SongId) REFERENCES Songs(Id)
+    FOREIGN KEY (DiscographyId) REFERENCES Discographies(Id) On delete cascade,
+    FOREIGN KEY (SongId) REFERENCES Songs(Id) On delete cascade
 );
 
 CREATE UNIQUE INDEX nameOfUser

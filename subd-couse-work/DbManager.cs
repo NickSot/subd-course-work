@@ -52,7 +52,7 @@ namespace subd_couse_work
             return dt.Rows[0];
         }
 
-        public static DataTable Where(string tableName, Dictionary<string, Object> dict) {
+        public static DataTable Where(string tableName, Dictionary<string, Object> dict, string whereClause) {
             connection.Open();
 
             StringBuilder sb = new StringBuilder();
@@ -65,7 +65,7 @@ namespace subd_couse_work
                 sb.Append(obj.Key + "=" + string.Concat("@" + obj.Key));
 
                 if (counter < dict.Count - 1) {
-                    sb.Append(" And ");
+                    sb.Append(" " + whereClause + " ");
                 }
 
                 counter++;
@@ -88,6 +88,16 @@ namespace subd_couse_work
             connection.Close();
 
             return dt;
+        }
+
+        public static DataTable WhereAnd(string tableName, Dictionary<string, Object> dict)
+        {
+            return Where(tableName, dict, "AND");
+        }
+
+        public static DataTable WhereOr(string tableName, Dictionary<string, Object> dict)
+        {
+            return Where(tableName, dict, "OR");
         }
 
         public static void Insert(string tableName, Dictionary<string, Object> dict) {
