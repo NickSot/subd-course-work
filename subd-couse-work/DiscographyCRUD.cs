@@ -15,9 +15,9 @@ namespace subd_couse_work
     public partial class RegisterLoginMenu : Form
     {
         private int userId;
-        public RegisterLoginMenu()
+        public RegisterLoginMenu(int userId)
         {
-            this.userId = 1;
+            this.userId = userId;
             InitializeComponent();
         }
 

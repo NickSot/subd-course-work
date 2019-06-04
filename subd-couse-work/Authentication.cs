@@ -24,10 +24,10 @@ namespace subd_couse_work
         }
 
 
-        private void proceedAfterAuthentication()
+        private void proceedAfterAuthentication(int userId)
         {
             this.Hide();
-            new RegisterLoginMenu().ShowDialog();
+            new RegisterLoginMenu(userId).ShowDialog();
             this.Close();
         }
 
@@ -54,7 +54,8 @@ namespace subd_couse_work
                     bool isCorrectUser = Encryptor.ValidatePassword(txtPasswordLogin.Text, Base64Encode(txtUsernameLogin.Text), 1000, 128, foundUser.Rows[0]["Password"].ToString());
                     if (isCorrectUser)
                     {
-                        proceedAfterAuthentication();
+                        int userId = Convert.ToInt32(foundUser.Rows[0]["Id"].ToString());
+                        proceedAfterAuthentication(userId);
                     }
                     else
                     {
@@ -88,7 +89,8 @@ namespace subd_couse_work
                     if (Users.WhereOr(newUserDict).Rows.Count == 0) // This is bad because it doesn't handle non unique single values
                     {
                         Users.Insert(newUserDict);
-                        proceedAfterAuthentication();
+                        DataRow user = Users.Find(Users.All().Rows.Count - 1);
+                        proceedAfterAuthentication(Convert.ToInt32(user["Id"].ToString()));
                     }
                     else
                     {
