@@ -24,7 +24,6 @@ namespace subd_couse_work
         private void Form1_Load(object sender, EventArgs e)
         {
             DbManager m = new DbManager();
-
             this.dgvDiscographies.DataSource = Discographies.All();
 
             this.dgvDiscographies.Columns["UserId"].Visible = false;
@@ -38,6 +37,9 @@ namespace subd_couse_work
                     row.Cells["Songs"].Value = "Click here!";
                 }
             }
+            DataRow user = Users.Find(this.userId);
+            MessageBox.Show(user["Name"].ToString());
+            lblAuthenticated.Text = user["Name"].ToString();
         }
 
         private void BtnCreateDisc_Click(object sender, EventArgs e)
@@ -47,7 +49,7 @@ namespace subd_couse_work
             input.Add("Name", this.txtDiscographyName.Text);
 
             Discographies.Insert(input);
-
+            
             this.dgvDiscographies.DataSource = Discographies.All();
 
             this.dgvDiscographies.Columns["UserId"].Visible = false;
@@ -86,5 +88,11 @@ namespace subd_couse_work
 
         }
 
+        private void lblAuthenticated_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            new changeUserCredentials(userId).ShowDialog();
+            string name = Users.Find(userId)["Name"].ToString();
+            lblAuthenticated.Text = name;
+        }
     }
 }

@@ -31,11 +31,7 @@ namespace subd_couse_work
             this.Close();
         }
 
-        public static string Base64Encode(string plainText)
-        {
-            var plainTextBytes = System.Text.Encoding.UTF8.GetBytes(plainText);
-            return System.Convert.ToBase64String(plainTextBytes);
-        }
+        
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
@@ -51,7 +47,7 @@ namespace subd_couse_work
                 }
                 else
                 {
-                    bool isCorrectUser = Encryptor.ValidatePassword(txtPasswordLogin.Text, Base64Encode(txtUsernameLogin.Text), 1000, 128, foundUser.Rows[0]["Password"].ToString());
+                    bool isCorrectUser = Encryptor.ValidatePassword(txtPasswordLogin.Text, foundUser.Rows[0]["Password"].ToString());
                     if (isCorrectUser)
                     {
                         int userId = Convert.ToInt32(foundUser.Rows[0]["Id"].ToString());
@@ -84,12 +80,12 @@ namespace subd_couse_work
                     newUserDict.Add("Name", txtUsernameReg.Text);
 
                     newUserDict.Add("Email", txtEmailReg.Text);
-                    string encryptedPassword = Encryptor.computeHash(txtPassReg.Text, Base64Encode(txtUsernameReg.Text), 1000, 128);
-                    newUserDict.Add("Password", encryptedPassword);
-                    if (Users.WhereOr(newUserDict).Rows.Count == 0) // This is bad because it doesn't handle non unique single values
+                    string encryptedPassword = Encryptor.computeHash(txtPassReg.Text);
+                    if (Users.WhereOr(newUserDict).Rows.Count == 0) 
                     {
+                        newUserDict.Add("Password", encryptedPassword);
                         Users.Insert(newUserDict);
-                        DataRow user = Users.Find(Users.All().Rows.Count - 1);
+                        DataRow user = Users.Where(newUserDict).Rows[0];
                         proceedAfterAuthentication(Convert.ToInt32(user["Id"].ToString()));
                     }
                     else

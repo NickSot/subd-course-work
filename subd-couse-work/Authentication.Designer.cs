@@ -34,6 +34,7 @@
             this.txtUsernameLogin = new System.Windows.Forms.TextBox();
             this.txtPasswordLogin = new System.Windows.Forms.TextBox();
             this.pageLogin = new System.Windows.Forms.Panel();
+            this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.pageRegister = new System.Windows.Forms.Panel();
@@ -44,7 +45,6 @@
             this.txtPassReg = new System.Windows.Forms.TextBox();
             this.txtEmailReg = new System.Windows.Forms.TextBox();
             this.txtUsernameReg = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
             this.pageLogin.SuspendLayout();
             this.pageRegister.SuspendLayout();
             this.SuspendLayout();
@@ -100,6 +100,16 @@
             this.pageLogin.Name = "pageLogin";
             this.pageLogin.Size = new System.Drawing.Size(791, 338);
             this.pageLogin.TabIndex = 2;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(334, 20);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(122, 48);
+            this.label6.TabIndex = 3;
+            this.label6.Text = "Login";
             // 
             // label5
             // 
@@ -209,16 +219,6 @@
             this.txtUsernameReg.TabIndex = 1;
             this.txtUsernameReg.WordWrap = false;
             // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(334, 20);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(122, 48);
-            this.label6.TabIndex = 3;
-            this.label6.Text = "Login";
-            // 
             // AuthenticateForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -226,8 +226,8 @@
             this.ClientSize = new System.Drawing.Size(982, 453);
             this.Controls.Add(this.btnRegister);
             this.Controls.Add(this.btnLogin);
-            this.Controls.Add(this.pageLogin);
             this.Controls.Add(this.pageRegister);
+            this.Controls.Add(this.pageLogin);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.Name = "AuthenticateForm";
