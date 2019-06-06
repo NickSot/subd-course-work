@@ -21,10 +21,12 @@ namespace subd_couse_work
             InitializeComponent();
         }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
-            DbManager m = new DbManager();
-            this.dgvDiscographies.DataSource = Discographies.All();
+        private void ShowDiscographies() {
+            var dict = new Dictionary<string, object>();
+
+            dict.Add("UserId", this.userId);
+
+            this.dgvDiscographies.DataSource = Discographies.Where(dict);
 
             this.dgvDiscographies.Columns["UserId"].Visible = false;
 
@@ -37,6 +39,14 @@ namespace subd_couse_work
                     row.Cells["Songs"].Value = "Click here!";
                 }
             }
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            DbManager m = new DbManager();
+
+            ShowDiscographies();
+            
             DataRow user = Users.Find(this.userId);
             //MessageBox.Show(user["Name"].ToString());
             lblAuthenticated.Text = user["Name"].ToString();
@@ -47,21 +57,11 @@ namespace subd_couse_work
             Dictionary<string, Object> input = new Dictionary<string, Object>();
 
             input.Add("Name", this.txtDiscographyName.Text);
+            input.Add("UserId", this.userId);
 
             Discographies.Insert(input);
-            
-            this.dgvDiscographies.DataSource = Discographies.All();
 
-            this.dgvDiscographies.Columns["UserId"].Visible = false;
-
-            if (this.dgvDiscographies.Columns["Songs"] == null)
-            {
-                this.dgvDiscographies.Columns.Add("Songs", "Songs");
-
-                foreach (DataGridViewRow row in this.dgvDiscographies.Rows) {
-                    row.Cells["Songs"].Value= "Click here!";
-                }
-            }
+            ShowDiscographies();
         }
 
         private void DgvDiscographies_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -95,9 +95,6 @@ namespace subd_couse_work
 
                     this.dgvDiscographies.Columns["UserId"].Visible = false;
                 }
-
-
-                
             }
 
         }
