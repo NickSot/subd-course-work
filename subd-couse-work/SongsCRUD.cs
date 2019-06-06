@@ -82,6 +82,12 @@ namespace subd_couse_work
 
         private void BtnCreateSong_Click(object sender, EventArgs e)
         {
+            if (this.txtSongName.Text.Length > 500) {
+                MessageBox.Show("The song name is too long!!!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                return;
+            }
+
             Dictionary<string, object> dict = new Dictionary<string, object>();
 
             dict.Add("Name", this.txtSongName.Text);

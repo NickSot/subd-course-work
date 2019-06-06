@@ -35,6 +35,40 @@ namespace subd_couse_work
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
+            if (this.txtEmailReg.Text.Length > 30) {
+                MessageBox.Show("Email symbol length too long!!!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                return;
+            }
+
+            if (this.txtUsernameLogin.Text.Length > 30)
+            {
+                MessageBox.Show("Username is too long!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                return;
+            }
+
+            if (this.txtPasswordLogin.Text.Length > 255)
+            {
+                MessageBox.Show("Password is too long!!!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                return;
+            }
+
+            if (this.txtUsernameReg.Text.Length > 30)
+            {
+                MessageBox.Show("Username is too long!!!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                return;
+            }
+
+            if (this.txtPassReg.Text.Length > 30)
+            {
+                MessageBox.Show("Password is too long!!!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                return;
+            }
+
             if (pageLogin.Visible)
             {
 
