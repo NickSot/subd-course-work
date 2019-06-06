@@ -31,41 +31,50 @@ namespace subd_couse_work
             this.Close();
         }
 
-        
 
-        private void btnLogin_Click(object sender, EventArgs e)
-        {
-            if (this.txtEmailReg.Text.Length > 30) {
+
+        private bool CheckFields() {
+            if (this.txtEmailReg.Text.Length > 30)
+            {
                 MessageBox.Show("Email symbol length too long!!!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
-                return;
+                return false;
             }
 
             if (this.txtUsernameLogin.Text.Length > 30)
             {
                 MessageBox.Show("Username is too long!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
-                return;
+                return false;
             }
 
             if (this.txtPasswordLogin.Text.Length > 255)
             {
                 MessageBox.Show("Password is too long!!!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
-                return;
+                return false;
             }
 
             if (this.txtUsernameReg.Text.Length > 30)
             {
                 MessageBox.Show("Username is too long!!!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
-                return;
+                return false;
             }
 
             if (this.txtPassReg.Text.Length > 30)
             {
                 MessageBox.Show("Password is too long!!!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
+                return false;
+            }
+
+            return true;
+        }
+
+        private void btnLogin_Click(object sender, EventArgs e)
+        {
+            if (!CheckFields()) {
                 return;
             }
 
@@ -102,6 +111,10 @@ namespace subd_couse_work
 
         private void btnRegister_Click(object sender, EventArgs e)
         {
+            if (!CheckFields()) {
+                return;
+            }
+
             if (pageRegister.Visible)
             {
                 if(txtUsernameReg.TextLength < 4 || txtPassReg.TextLength < 4 || txtEmailReg.TextLength < 4)
