@@ -74,17 +74,31 @@ namespace subd_couse_work
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Dictionary<string, Object> input = new Dictionary<string, Object>();
+            DialogResult result = MessageBox.Show("Do you really want to delete this", "Warning", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
 
-            int id = Int32.Parse(this.discographyId.Text);
+            if (result == DialogResult.OK)
+            {
 
-            input.Add("Id", id);
+                Dictionary<string, Object> input = new Dictionary<string, Object>();
 
-            Discographies.Delete(input);
+                int id = 0;
+                if(Int32.TryParse(this.discographyId.Text, out id)==false)
+                {
+                    MessageBox.Show("Please enter a valid id", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                } else
+                {
+                    input.Add("Id", id);
 
-            this.dgvDiscographies.DataSource = Discographies.All();
+                    Discographies.Delete(input);
 
-            this.dgvDiscographies.Columns["UserId"].Visible = false;
+                    this.dgvDiscographies.DataSource = Discographies.All();
+
+                    this.dgvDiscographies.Columns["UserId"].Visible = false;
+                }
+
+
+                
+            }
 
         }
 
@@ -93,6 +107,33 @@ namespace subd_couse_work
             new changeUserCredentials(userId).ShowDialog();
             string name = Users.Find(userId)["Name"].ToString();
             lblAuthenticated.Text = name;
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Dictionary<string, Object> input = new Dictionary<string, Object>();
+
+            input.Add("Name", this.newNameTxt.Text);
+
+            int id = 0;
+            if (Int32.TryParse(this.textBox2.Text, out id) == false)
+            {
+                MessageBox.Show("Please enter a valid id", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+
+                Discographies.Update(id, input);
+
+                this.dgvDiscographies.DataSource = Discographies.All();
+
+                this.dgvDiscographies.Columns["UserId"].Visible = false;
+            }
         }
     }
 }
