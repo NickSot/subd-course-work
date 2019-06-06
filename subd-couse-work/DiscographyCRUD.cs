@@ -21,6 +21,17 @@ namespace subd_couse_work
             InitializeComponent();
         }
 
+        private bool CheckFields() {
+            if (this.txtDiscographyName.Text.Length > 30)
+            {
+                MessageBox.Show("Discography name is too long!!!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                return false;
+            }
+
+            return true;
+        }
+
         private void ShowDiscographies() {
             var dict = new Dictionary<string, object>();
 
@@ -54,6 +65,10 @@ namespace subd_couse_work
 
         private void BtnCreateDisc_Click(object sender, EventArgs e)
         {
+            if (!CheckFields()) {
+                return;
+            }
+
             Dictionary<string, Object> input = new Dictionary<string, Object>();
 
             input.Add("Name", this.txtDiscographyName.Text);
@@ -74,6 +89,11 @@ namespace subd_couse_work
 
         private void button1_Click(object sender, EventArgs e)
         {
+            if (!CheckFields())
+            {
+                return;
+            }
+
             DialogResult result = MessageBox.Show("Do you really want to delete this", "Warning", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
 
             if (result == DialogResult.OK)
@@ -113,6 +133,11 @@ namespace subd_couse_work
 
         private void button2_Click(object sender, EventArgs e)
         {
+            if (!CheckFields())
+            {
+                return;
+            }
+
             Dictionary<string, Object> input = new Dictionary<string, Object>();
 
             input.Add("Name", this.newNameTxt.Text);
