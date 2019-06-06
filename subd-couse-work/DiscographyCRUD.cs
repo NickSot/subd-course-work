@@ -115,6 +115,7 @@ namespace subd_couse_work
 
                         Discographies.Delete(input);
 
+
                         ShowDiscographies();
 
                     }
