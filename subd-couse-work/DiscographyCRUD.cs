@@ -108,12 +108,16 @@ namespace subd_couse_work
                 } else
                 {
                     input.Add("Id", id);
+                    if(Discographies.Where(input).Rows.Count == 0){
+                        MessageBox.Show("No discography with such id", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    } else {
+                       
 
-                    Discographies.Delete(input);
+                        Discographies.Delete(input);
 
-                    this.dgvDiscographies.DataSource = Discographies.All();
+                        ShowDiscographies();
 
-                    this.dgvDiscographies.Columns["UserId"].Visible = false;
+                    }
                 }
             }
 
@@ -139,6 +143,7 @@ namespace subd_couse_work
             }
 
             Dictionary<string, Object> input = new Dictionary<string, Object>();
+            Dictionary<string, Object> discographyId = new Dictionary<string, Object>();
 
             input.Add("Name", this.newNameTxt.Text);
 
@@ -149,12 +154,17 @@ namespace subd_couse_work
             }
             else
             {
+                discographyId.Add("Id", id);
+                if (Discographies.Where(discographyId).Rows.Count == 0)
+                {
+                    MessageBox.Show("No discography with such id", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    Discographies.Update(id, input);
 
-                Discographies.Update(id, input);
-
-                this.dgvDiscographies.DataSource = Discographies.All();
-
-                this.dgvDiscographies.Columns["UserId"].Visible = false;
+                    ShowDiscographies();
+                }
             }
         }
     }
