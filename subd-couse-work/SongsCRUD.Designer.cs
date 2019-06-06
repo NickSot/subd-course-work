@@ -103,6 +103,7 @@
             this.dgvSong.Name = "dgvSong";
             this.dgvSong.Size = new System.Drawing.Size(419, 462);
             this.dgvSong.TabIndex = 1;
+            this.dgvSong.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvSong_CellClick);
             // 
             // SongsCRUD
             // 

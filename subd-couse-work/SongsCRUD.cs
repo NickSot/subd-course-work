@@ -25,6 +25,7 @@ namespace subd_couse_work
                           where (int)d["Id"] == this.parent_id
                           select new
                           {
+                              Id = (int)s["Id"],
                               SongName = (string)s["Name"],
                               Lyrics = (string)s["Lyrics"]
                           };
@@ -35,10 +36,12 @@ namespace subd_couse_work
 
             dt.Columns.Add("Song Name");
             dt.Columns.Add("Lyrics");
+            dt.Columns.Add("Id");
 
             foreach (var obj in joinedTable) {
                 dt.Rows.Add(dt.NewRow());
 
+                dt.Rows[counter]["Id"] = obj.Id;
                 dt.Rows[counter]["Song Name"] = obj.SongName;
                 dt.Rows[counter]["Lyrics"] = obj.Lyrics;
 
@@ -46,6 +49,16 @@ namespace subd_couse_work
             }
 
             this.dgvSong.DataSource = dt;
+
+            if (this.dgvSong.Columns["Delete"] == null)
+            {
+                this.dgvSong.Columns.Add("Delete", "Delete");
+
+                foreach (DataGridViewRow row in this.dgvSong.Rows)
+                {
+                    row.Cells["Delete"].Value = "Delete";
+                }
+            }
         }
 
         public SongsCRUD(int parent_id, Form caller)
@@ -95,6 +108,19 @@ namespace subd_couse_work
         {
             this.Close();
             this.caller.Show();
+        }
+
+        private void DgvSong_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0 && e.RowIndex < this.dgvSong.Rows.Count && e.ColumnIndex >= 0 && e.ColumnIndex < this.dgvSong.Columns.Count && this.dgvSong.Columns[e.ColumnIndex].Name == "Delete") {
+                var dict = new Dictionary<string, object>();
+
+                dict.Add("Id", this.dgvSong.Rows[e.RowIndex].Cells["Id"].Value);
+
+                Songs.Delete(dict);
+
+                JoinAndShow();
+            }
         }
     }
 }

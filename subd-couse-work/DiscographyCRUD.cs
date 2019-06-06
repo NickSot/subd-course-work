@@ -66,7 +66,7 @@ namespace subd_couse_work
 
         private void DgvDiscographies_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (this.dgvDiscographies.Columns[e.ColumnIndex].Name == "Songs" && e.RowIndex >= 0 && e.RowIndex < this.dgvDiscographies.Rows.Count - 1) {
+            if (e.ColumnIndex >= 1 && e.ColumnIndex < this.dgvDiscographies.Columns.Count && e.RowIndex >= 0 && e.RowIndex < this.dgvDiscographies.Rows.Count - 1 && this.dgvDiscographies.Columns[e.ColumnIndex].Name == "Songs") {
                 this.Hide();
                 new SongsCRUD(Convert.ToInt32(this.dgvDiscographies.Rows[e.RowIndex].Cells["Id"].Value), this).ShowDialog();
             }
