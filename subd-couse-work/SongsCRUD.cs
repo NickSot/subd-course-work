@@ -75,6 +75,9 @@ namespace subd_couse_work
             DbManager m = new DbManager();
 
             JoinAndShow();
+
+            this.btnUpdateSong.Visible = false;
+            this.btnCancelUpdate.Visible = false;
         }
 
         private void BtnCreateSong_Click(object sender, EventArgs e)
@@ -102,6 +105,8 @@ namespace subd_couse_work
             SongsInDiscographies.Insert(dict);
 
             JoinAndShow();
+
+            this.BtnCancelUpdate_Click(this, null);
         }
 
         private void SongsCRUD_FormClosed(object sender, FormClosedEventArgs e)
@@ -114,13 +119,48 @@ namespace subd_couse_work
         {
             if (e.RowIndex >= 0 && e.RowIndex < this.dgvSong.Rows.Count && e.ColumnIndex >= 0 && e.ColumnIndex < this.dgvSong.Columns.Count && this.dgvSong.Columns[e.ColumnIndex].Name == "Delete") {
                 var dict = new Dictionary<string, object>();
-
                 dict.Add("Id", this.dgvSong.Rows[e.RowIndex].Cells["Id"].Value);
-
                 Songs.Delete(dict);
-
                 JoinAndShow();
+                this.BtnCancelUpdate_Click(this, null);
             }
+        }
+
+        private int update_id = 0;
+
+        private void DgvSong_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0 && e.RowIndex < this.dgvSong.Rows.Count - 1 && e.ColumnIndex >= 0 && e.ColumnIndex < this.dgvSong.Columns.Count - 1 && this.dgvSong.Columns[e.ColumnIndex].Name != "Delete") {
+                this.update_id = Convert.ToInt32(this.dgvSong.Rows[e.RowIndex].Cells["Id"].Value);
+                this.txtSongName.Text = this.dgvSong.Rows[e.RowIndex].Cells["Song Name"].Value.ToString();
+                this.rtbLyrics.Text = this.dgvSong.Rows[e.RowIndex].Cells["Lyrics"].Value.ToString();
+
+                this.btnUpdateSong.Visible = true;
+                this.btnCancelUpdate.Visible = true;
+            }
+        }
+
+        private void BtnUpdateSong_Click(object sender, EventArgs e)
+        {
+            var dict = new Dictionary<string, object>();
+
+            dict.Add("Name", this.txtSongName.Text);
+            dict.Add("Lyrics", this.rtbLyrics.Text);
+
+            Songs.Update(update_id, dict);
+
+            this.BtnCancelUpdate_Click(this, null);
+
+            JoinAndShow();
+        }
+
+        private void BtnCancelUpdate_Click(object sender, EventArgs e)
+        {
+            this.txtSongName.Text = "";
+            this.rtbLyrics.Text = "";
+
+            this.btnUpdateSong.Visible = false;
+            this.btnCancelUpdate.Visible = false;
         }
     }
 }

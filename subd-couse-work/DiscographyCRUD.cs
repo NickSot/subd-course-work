@@ -38,7 +38,7 @@ namespace subd_couse_work
                 }
             }
             DataRow user = Users.Find(this.userId);
-            MessageBox.Show(user["Name"].ToString());
+            //MessageBox.Show(user["Name"].ToString());
             lblAuthenticated.Text = user["Name"].ToString();
         }
 
@@ -66,7 +66,7 @@ namespace subd_couse_work
 
         private void DgvDiscographies_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex >= 1 && e.ColumnIndex < this.dgvDiscographies.Columns.Count && e.RowIndex >= 0 && e.RowIndex < this.dgvDiscographies.Rows.Count - 1 && this.dgvDiscographies.Columns[e.ColumnIndex].Name == "Songs") {
+            if (e.ColumnIndex >= 0 && e.ColumnIndex < this.dgvDiscographies.Columns.Count && e.RowIndex >= 0 && e.RowIndex < this.dgvDiscographies.Rows.Count && this.dgvDiscographies.Columns[e.ColumnIndex].Name == "Songs") {
                 this.Hide();
                 new SongsCRUD(Convert.ToInt32(this.dgvDiscographies.Rows[e.RowIndex].Cells["Id"].Value), this).ShowDialog();
             }

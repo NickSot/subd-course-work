@@ -35,12 +35,16 @@
             this.lblLyrics = new System.Windows.Forms.Label();
             this.lblSongName = new System.Windows.Forms.Label();
             this.dgvSong = new System.Windows.Forms.DataGridView();
+            this.btnUpdateSong = new System.Windows.Forms.Button();
+            this.btnCancelUpdate = new System.Windows.Forms.Button();
             this.gbCreateSong.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSong)).BeginInit();
             this.SuspendLayout();
             // 
             // gbCreateSong
             // 
+            this.gbCreateSong.Controls.Add(this.btnCancelUpdate);
+            this.gbCreateSong.Controls.Add(this.btnUpdateSong);
             this.gbCreateSong.Controls.Add(this.btnCreateSong);
             this.gbCreateSong.Controls.Add(this.rtbLyrics);
             this.gbCreateSong.Controls.Add(this.txtSongName);
@@ -104,6 +108,27 @@
             this.dgvSong.Size = new System.Drawing.Size(419, 462);
             this.dgvSong.TabIndex = 1;
             this.dgvSong.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvSong_CellClick);
+            this.dgvSong.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvSong_CellDoubleClick);
+            // 
+            // btnUpdateSong
+            // 
+            this.btnUpdateSong.Location = new System.Drawing.Point(329, 219);
+            this.btnUpdateSong.Name = "btnUpdateSong";
+            this.btnUpdateSong.Size = new System.Drawing.Size(96, 35);
+            this.btnUpdateSong.TabIndex = 5;
+            this.btnUpdateSong.Text = "Edit";
+            this.btnUpdateSong.UseVisualStyleBackColor = true;
+            this.btnUpdateSong.Click += new System.EventHandler(this.BtnUpdateSong_Click);
+            // 
+            // btnCancelUpdate
+            // 
+            this.btnCancelUpdate.Location = new System.Drawing.Point(329, 158);
+            this.btnCancelUpdate.Name = "btnCancelUpdate";
+            this.btnCancelUpdate.Size = new System.Drawing.Size(96, 37);
+            this.btnCancelUpdate.TabIndex = 6;
+            this.btnCancelUpdate.Text = "Cancel";
+            this.btnCancelUpdate.UseVisualStyleBackColor = true;
+            this.btnCancelUpdate.Click += new System.EventHandler(this.BtnCancelUpdate_Click);
             // 
             // SongsCRUD
             // 
@@ -132,5 +157,7 @@
         private System.Windows.Forms.RichTextBox rtbLyrics;
         private System.Windows.Forms.Button btnCreateSong;
         private System.Windows.Forms.DataGridView dgvSong;
+        private System.Windows.Forms.Button btnUpdateSong;
+        private System.Windows.Forms.Button btnCancelUpdate;
     }
 }
