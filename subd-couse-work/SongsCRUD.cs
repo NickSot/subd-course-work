@@ -52,11 +52,23 @@ namespace subd_couse_work
 
             if (this.dgvSong.Columns["Delete"] == null)
             {
-                this.dgvSong.Columns.Add("Delete", "Delete");
-
-                foreach (DataGridViewRow row in this.dgvSong.Rows)
+  
+            }
+            this.dgvSong.Columns.Add("Delete", "Delete");
+            int count = this.dgvSong.Rows.Count;
+            count--;
+            int i = 0;
+            foreach (DataGridViewRow row in this.dgvSong.Rows)
+            {
+                if (i == count)
+                {
+                    break;
+                }
+                else
                 {
                     row.Cells["Delete"].Value = "Delete";
+                    i++;
+
                 }
             }
         }

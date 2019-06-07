@@ -17,6 +17,7 @@ namespace subd_couse_work
         private int userId;
         public RegisterLoginMenu(int userId)
         {
+
             this.userId = userId;
             InitializeComponent();
         }
@@ -71,6 +72,7 @@ namespace subd_couse_work
             ShowDiscographies();
             
             DataRow user = Users.Find(this.userId);
+            //MessageBox.Show(user["Name"].ToString());
             lblAuthenticated.Text = user["Name"].ToString();
         }
 
