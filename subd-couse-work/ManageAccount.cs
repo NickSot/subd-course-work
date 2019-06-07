@@ -52,5 +52,22 @@ namespace subd_couse_work
                 MessageBox.Show("There is already such an account!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+            DialogResult result = MessageBox.Show("Do you really want to delete this account?", "Warning", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+
+            if (result == DialogResult.OK)
+            {
+
+                Dictionary<string, object> currentUser = new Dictionary<string, object>();
+                currentUser.Add("Id", userId);
+                Users.Delete(currentUser);
+                this.Hide();
+                new AuthenticateForm().ShowDialog();
+                this.Close();
+            }
+        }
     }
 }

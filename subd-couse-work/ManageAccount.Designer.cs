@@ -38,6 +38,7 @@
             this.txtUsername = new System.Windows.Forms.TextBox();
             this.btnChangeAccount = new System.Windows.Forms.Button();
             this.btnBack = new System.Windows.Forms.Button();
+            this.btnDelete = new System.Windows.Forms.Button();
             this.pageRegister.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -151,16 +152,35 @@
             this.btnBack.UseVisualStyleBackColor = true;
             this.btnBack.Click += new System.EventHandler(this.btnLogin_Click);
             // 
+            // btnDelete
+            // 
+            this.btnDelete.BackColor = System.Drawing.Color.LightCoral;
+            this.btnDelete.FlatAppearance.BorderColor = System.Drawing.Color.Red;
+            this.btnDelete.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Red;
+            this.btnDelete.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Yellow;
+            this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDelete.ForeColor = System.Drawing.SystemColors.Desktop;
+            this.btnDelete.Location = new System.Drawing.Point(785, 361);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(108, 66);
+            this.btnDelete.TabIndex = 7;
+            this.btnDelete.Text = "Delete Account";
+            this.btnDelete.UseVisualStyleBackColor = false;
+            this.btnDelete.Click += new System.EventHandler(this.button1_Click);
+            // 
             // changeUserCredentials
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(982, 453);
+            this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.btnChangeAccount);
             this.Controls.Add(this.btnBack);
             this.Controls.Add(this.pageRegister);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.Name = "changeUserCredentials";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Manage Account";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.pageRegister.ResumeLayout(false);
@@ -181,5 +201,6 @@
         private System.Windows.Forms.TextBox txtUsername;
         private System.Windows.Forms.Button btnChangeAccount;
         private System.Windows.Forms.Button btnBack;
+        private System.Windows.Forms.Button btnDelete;
     }
 }
