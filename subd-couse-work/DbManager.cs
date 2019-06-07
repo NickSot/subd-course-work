@@ -49,6 +49,10 @@ namespace subd_couse_work
 
             connection.Close();
 
+            if (dt.Rows.Count == 0) {
+                return null;
+            }
+
             return dt.Rows[0];
         }
 

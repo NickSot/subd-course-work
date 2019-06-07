@@ -46,6 +46,12 @@ namespace subd_couse_work
             {
                 this.dgvDiscographies.Columns.Add("Songs", "Songs");
             }
+
+            if (this.dgvDiscographies.Columns["Delete"] == null)
+            {
+                this.dgvDiscographies.Columns.Add("Delete", "Delete");
+            }
+
             int count = this.dgvDiscographies.Rows.Count;
             count--;
             int i = 0;
@@ -58,6 +64,7 @@ namespace subd_couse_work
                 else
                 {
                     row.Cells["Songs"].Value = "Click here!";
+                    row.Cells["Delete"].Value = "Delete";
                     i++;
                 }
             }
@@ -74,6 +81,9 @@ namespace subd_couse_work
             DataRow user = Users.Find(this.userId);
             //MessageBox.Show(user["Name"].ToString());
             lblAuthenticated.Text = user["Name"].ToString();
+
+            this.btnUpdateDiscograpy.Visible = false;
+            this.btnCancelUpdate.Visible = false;
         }
 
         private void BtnCreateDisc_Click(object sender, EventArgs e)
@@ -95,49 +105,54 @@ namespace subd_couse_work
 
                 Discographies.Insert(input);
             }
+
+            btnCancelUpdate_Click(this, null);
+
             ShowDiscographies();
         }
 
         private void DgvDiscographies_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex >= 0 && e.ColumnIndex < this.dgvDiscographies.Columns.Count && e.RowIndex >= 0 && e.RowIndex < this.dgvDiscographies.Rows.Count && this.dgvDiscographies.Columns[e.ColumnIndex].Name == "Songs") {
+            if (e.ColumnIndex >= 0 && e.ColumnIndex < this.dgvDiscographies.Columns.Count && e.RowIndex >= 0 && e.RowIndex < this.dgvDiscographies.Rows.Count && this.dgvDiscographies.Columns[e.ColumnIndex].Name == "Songs")
+            {
                 this.Hide();
                 new SongsCRUD(Convert.ToInt32(this.dgvDiscographies.Rows[e.RowIndex].Cells["Id"].Value), this).ShowDialog();
             }
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            if (!CheckFields())
-            {
-                return;
-            }
-
-            DialogResult result = MessageBox.Show("Do you really want to delete this", "Warning", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
-
-            if (result == DialogResult.OK)
-            {
-
-                Dictionary<string, Object> input = new Dictionary<string, Object>();
-
-                int id = 0;
-                if(Int32.TryParse(this.discographyId.Text, out id)==false)
+            else if (e.ColumnIndex >= 0 && e.ColumnIndex < this.dgvDiscographies.Columns.Count && e.RowIndex >= 0 && e.RowIndex < this.dgvDiscographies.Rows.Count && this.dgvDiscographies.Columns[e.ColumnIndex].Name == "Delete") {
+                if (!CheckFields())
                 {
-                    MessageBox.Show("Please enter a valid id", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                } else
-                {
-                    input.Add("Id", id);
-                    if(Discographies.Where(input).Rows.Count == 0){
-                        MessageBox.Show("No discography with such id", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    } else {
-                       
-
-                        Discographies.Delete(input);
-
-                    }
+                    return;
                 }
+
+                DialogResult result = MessageBox.Show("Do you really want to delete this", "Warning", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+
+                if (result == DialogResult.OK)
+                {
+
+                    Dictionary<string, Object> input = new Dictionary<string, Object>();
+
+                    input.Add("DiscographyId", this.dgvDiscographies.Rows[e.RowIndex].Cells["Id"].Value);
+
+                    var dt = SongsInDiscographies.Where(input);
+
+                    foreach (DataRow obj in dt.Rows) {
+                        var tempDict = new Dictionary<string, object>();
+
+                        tempDict.Add("Id", Convert.ToInt32(obj["SongId"]));
+
+                        Songs.Delete(tempDict);
+                    }
+
+                    var tempDict1 = new Dictionary<string, object>();
+
+                    tempDict1.Add("Id", this.dgvDiscographies.Rows[e.RowIndex].Cells["Id"].Value);
+
+                    SongsInDiscographies.Delete(input);
+
+                    Discographies.Delete(tempDict1);
+                }
+                ShowDiscographies();
             }
-            ShowDiscographies();
         }
 
         private void lblAuthenticated_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -152,7 +167,19 @@ namespace subd_couse_work
 
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void dgvDiscographies_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            this.txtDiscographyName.Text = this.dgvDiscographies.Rows[e.RowIndex].Cells["Name"].Value.ToString();
+
+            this.updateId = Convert.ToInt32(this.dgvDiscographies.Rows[e.RowIndex].Cells["Id"].Value);
+
+            this.btnCancelUpdate.Visible = true;
+            this.btnUpdateDiscograpy.Visible = true;
+        }
+
+        int updateId = 0;
+
+        private void btnUpdateDiscograpy_Click(object sender, EventArgs e)
         {
             if (!CheckFields())
             {
@@ -162,33 +189,28 @@ namespace subd_couse_work
             Dictionary<string, Object> input = new Dictionary<string, Object>();
             Dictionary<string, Object> discographyId = new Dictionary<string, Object>();
 
-            if (this.newNameTxt.Text.Length < 3)
+            if (this.txtDiscographyName.Text.Length < 3)
             {
                 MessageBox.Show("The name must contain at least 3 symbols", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
             {
-                input.Add("Name", this.newNameTxt.Text);
+                input.Add("Name", this.txtDiscographyName.Text);
 
-                int id = 0;
-                if (Int32.TryParse(this.textBox2.Text, out id) == false)
-                {
-                    MessageBox.Show("Please enter a valid id", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                else
-                {
-                    discographyId.Add("Id", id);
-                    if (Discographies.Where(discographyId).Rows.Count == 0)
-                    {
-                        MessageBox.Show("No discography with such id", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                    else
-                    {
-                        Discographies.Update(id, input);
-                    }
-                }
+                Discographies.Update(this.updateId, input);
             }
+
+            btnCancelUpdate_Click(this, null);
+
             ShowDiscographies();
+        }
+
+        private void btnCancelUpdate_Click(object sender, EventArgs e)
+        {
+            this.txtDiscographyName.Text = "";
+
+            this.btnCancelUpdate.Visible = false;
+            this.btnUpdateDiscograpy.Visible = false;
         }
     }
 }

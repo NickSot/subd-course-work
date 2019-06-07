@@ -94,6 +94,12 @@ namespace subd_couse_work
 
         private void BtnCreateSong_Click(object sender, EventArgs e)
         {
+            if (this.txtSongName.Text.Length < 1)
+            {
+                MessageBox.Show("Cannot create a song without a name!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             if (this.txtSongName.Text.Length > 500) {
                 MessageBox.Show("The song name is too long!!!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
@@ -160,6 +166,12 @@ namespace subd_couse_work
 
         private void BtnUpdateSong_Click(object sender, EventArgs e)
         {
+            if (this.txtSongName.Text.Length < 1)
+            {
+                MessageBox.Show("Cannot create a song without a name!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             var dict = new Dictionary<string, object>();
 
             dict.Add("Name", this.txtSongName.Text);

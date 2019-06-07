@@ -70,3 +70,4 @@ C:\Users\NIKOLA\Desktop\subd-course-work\subd-couse-work\obj\Debug\subd_couse_wo
 D:\Disk D\~~Programming~~\Projects\.Net\subd-course-work\subd-couse-work\obj\Debug\subd_couse_work.changeUserCredentials.resources
 F:\Projects\C#\subd-course-work\subd-couse-work\obj\Debug\subd_couse_work.AuthenticateForm.resources
 F:\Projects\C#\subd-course-work\subd-couse-work\obj\Debug\subd_couse_work.changeUserCredentials.resources
+C:\Users\NIKOLA\Desktop\subd-course-work\subd-couse-work\obj\Debug\subd_couse_work.changeUserCredentials.resources
