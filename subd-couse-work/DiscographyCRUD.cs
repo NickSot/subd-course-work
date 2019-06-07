@@ -44,12 +44,24 @@ namespace subd_couse_work
             if (this.dgvDiscographies.Columns["Songs"] == null)
             {
                 this.dgvDiscographies.Columns.Add("Songs", "Songs");
-
-                foreach (DataGridViewRow row in this.dgvDiscographies.Rows)
+            }
+            int count = this.dgvDiscographies.Rows.Count;
+            count--;
+            int i = 0;
+            foreach (DataGridViewRow row in this.dgvDiscographies.Rows)
+            {
+                if (i == count)
+                {
+                    break;
+                }
+                else
                 {
                     row.Cells["Songs"].Value = "Click here!";
+                    i++;
                 }
             }
+
+
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -71,11 +83,17 @@ namespace subd_couse_work
 
             Dictionary<string, Object> input = new Dictionary<string, Object>();
 
-            input.Add("Name", this.txtDiscographyName.Text);
-            input.Add("UserId", this.userId);
+            if (this.txtDiscographyName.Text.Length < 3)
+            {
+                MessageBox.Show("The name must contain at least 3 symbols", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                input.Add("Name", this.txtDiscographyName.Text);
+                input.Add("UserId", this.userId);
 
-            Discographies.Insert(input);
-
+                Discographies.Insert(input);
+            }
             ShowDiscographies();
         }
 
@@ -115,13 +133,10 @@ namespace subd_couse_work
 
                         Discographies.Delete(input);
 
-
-                        ShowDiscographies();
-
                     }
                 }
             }
-
+            ShowDiscographies();
         }
 
         private void lblAuthenticated_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -146,27 +161,33 @@ namespace subd_couse_work
             Dictionary<string, Object> input = new Dictionary<string, Object>();
             Dictionary<string, Object> discographyId = new Dictionary<string, Object>();
 
-            input.Add("Name", this.newNameTxt.Text);
-
-            int id = 0;
-            if (Int32.TryParse(this.textBox2.Text, out id) == false)
+            if (this.newNameTxt.Text.Length < 3)
             {
-                MessageBox.Show("Please enter a valid id", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("The name must contain at least 3 symbols", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
             {
-                discographyId.Add("Id", id);
-                if (Discographies.Where(discographyId).Rows.Count == 0)
+                input.Add("Name", this.newNameTxt.Text);
+
+                int id = 0;
+                if (Int32.TryParse(this.textBox2.Text, out id) == false)
                 {
-                    MessageBox.Show("No discography with such id", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Please enter a valid id", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 else
                 {
-                    Discographies.Update(id, input);
-
-                    ShowDiscographies();
+                    discographyId.Add("Id", id);
+                    if (Discographies.Where(discographyId).Rows.Count == 0)
+                    {
+                        MessageBox.Show("No discography with such id", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    else
+                    {
+                        Discographies.Update(id, input);
+                    }
                 }
             }
+            ShowDiscographies();
         }
     }
 }
